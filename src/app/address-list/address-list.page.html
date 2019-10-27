@@ -1,0 +1,29 @@
+<ion-header translucent="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Address</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class='ion-padding'>
+  <div class="wr-well">
+    <h1>Travel where you want !</h1>
+    <h5>Make sure Emergency services can find you</h5>
+    <h6>Select you location below</h6>
+    <ion-card *ngFor="let address of addresses | async">
+      <ion-item-group>
+        <ion-item lines="none">
+            <ion-icon slot="start" [name]="address.icon">
+            </ion-icon>
+            <ion-icon slot="end" name="locate" (click)="selectLocation(address)"></ion-icon>
+            <ion-label>
+              <h1>{{address.name}}</h1>
+              <p>{{address.address1 }} {{address.address2 }} {{address.city}}, {{address.state}} {{address.zip}}</p>
+            </ion-label>
+        </ion-item>
+      </ion-item-group>
+    </ion-card>
+  </div>
+</ion-content>

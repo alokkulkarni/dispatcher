@@ -1,8 +1,5 @@
 <ion-header>
   <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
     <ion-title>
       Home
     </ion-title>
@@ -10,35 +7,43 @@
 </ion-header>
 
 <ion-content>
-    <ion-card class="welcome-card">
-      <img src="/assets/shapes.svg" alt="" />
-      <ion-card-header>
-        <ion-card-subtitle>Get Started</ion-card-subtitle>
-        <ion-card-title>Welcome to Ionic</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        <p>Now that your app has been created, you'll want to start building out features and components. Check out some of the resources below for next steps.</p>
-      </ion-card-content>
-    </ion-card>
-    <ion-list lines="none">
-      <ion-list-header>
-        <ion-label>Resources</ion-label>
-      </ion-list-header>
-      <ion-item href="https://ionicframework.com/docs/">
-        <ion-icon slot="start" color="medium" name="book"></ion-icon>
-        <ion-label>Ionic Documentation</ion-label>
-      </ion-item>
-      <ion-item href="https://ionicframework.com/docs/building/scaffolding">
-        <ion-icon slot="start" color="medium" name="build"></ion-icon>
-        <ion-label>Scaffold Out Your App</ion-label>
-      </ion-item>
-      <ion-item href="https://ionicframework.com/docs/layout/structure">
-        <ion-icon slot="start" color="medium" name="grid"></ion-icon>
-        <ion-label>Change Your App Layout</ion-label>
-      </ion-item>
-      <ion-item href="https://ionicframework.com/docs/theming/basics">
-        <ion-icon slot="start" color="medium" name="color-fill"></ion-icon>
-        <ion-label>Theme Your App</ion-label>
-      </ion-item>
-    </ion-list>
+    <agm-map [style.height.px]="this.height" [latitude]="this.getLatitude()" [longitude]="this.getLongitude()" [zoom]="18"
+      class="welcome-card">
+      <agm-marker [latitude]="this.getLatitude()" [longitude]="this.getLongitude()">
+        <agm-info-window [disableAutoPan]="true">
+          <div *ngIf="located">
+            <ion-item lines="none">
+              <ion-label>
+                <strong>
+                  Current Location: 
+                </strong>
+                <br />
+                <h6>{{address.name}}</h6>
+                <p> {{address.address1 }} {{address.address2 }} {{address.city}}, {{address.state}} {{address.zip}}</p>
+                
+              </ion-label>
+            </ion-item>
+          </div>  
+          <div *ngIf="!located">
+            <strong>Not Protected</strong>
+            <br /> Current Location (estimated)
+          </div> 
+        </agm-info-window>
+      </agm-marker>
+    </agm-map>
+    <ion-fab vertical="top" horizontal="start" slot="fixed" #fab>
+      <ion-fab-button><ion-icon name="more"></ion-icon></ion-fab-button>
+      <ion-fab-list side="right">
+        <ion-fab-button (click)="this.gotoSetup()"><ion-icon name="cog"></ion-icon></ion-fab-button>
+        <ion-fab-button (click)="gotoAddressList()">
+          <ion-icon name="list"></ion-icon>
+        </ion-fab-button>
+      </ion-fab-list>
+    </ion-fab>
+
+    <div class='wr-well wr-float'>
+      <h1 *ngIf="this.located">Congratulations - you are now protected</h1>
+      <h1 *ngIf="!this.located" class="danger">Please set your current location</h1>
+    </div>
+    <!-- <app-address-list (sendMessage)='receiveMessage($event)'></app-address-list> -->
 </ion-content>

@@ -1,0 +1,36 @@
+<ion-header translucent="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>setup</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding bg-image no-scroll" fullscreen="true">
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-col class="col-8">
+          <div class="wr-well">
+            <h1> Go Far - Stay Safe !!</h1>
+            <h6>Before you begin</h6>
+            <h6>We need your name and phone number</h6>
+          </div>
+          <ion-list class="wr-float">
+            <ion-item>
+              <ion-input type="text" placeholder="Name" (value)='this.name'></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input type="text" placeholder="Phone Number" (value)='this.number'></ion-input>
+            </ion-item>
+            <ion-item lines="none">
+              <ion-button expand="block" fill="solid" (click)='this.setInfo()'>
+                Send
+                <ion-icon slot="end"  name="arrow-forward"></ion-icon>
+              </ion-button>
+            </ion-item>
+          </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

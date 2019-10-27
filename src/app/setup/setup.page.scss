@@ -1,0 +1,57 @@
+ion-content {
+    --background: url('../../assets/images/setup-bg4.jpg') no-repeat center center fixed cover;
+    --background-size: cover;
+}
+
+.bg-image {
+    background: url('../../assets/images/setup-bg4.jpg') no-repeat center center fixed;
+    background-size: cover;
+}
+
+.no-scroll .scroll-content {
+    overflow: hidden;
+}
+
+.wr-well {
+    text-align: center;
+    margin: auto;
+    max-width: 800px;
+    padding: 20px 15px 0;
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        color: #000;
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
+    }
+}
+
+.wr-float {
+    position: absolute;
+    top: 180px;
+    left: 15%;
+    right: 15%;
+    background-color: transparent;
+}
+
+ion-item {
+    --background: transparent;
+    --padding-top: 5px;
+    --margin: 5px auto 0;
+    --color: white;
+}
+
+@media (max-width: 1966px) {
+    ion-item {
+        --color: black;
+    }
+}
+
+@media (max-width: 320px) {
+    ion-item {
+        --color: white;
+    }
+}

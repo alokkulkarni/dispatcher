@@ -1,4 +1,39 @@
-.welcome-card img {
-  max-height: 35vh;
-  overflow: hidden;
-}
+
+  .welcome-card {
+    width: 100%;
+    height: 100%;
+  }
+
+  ion-content {
+    --height: 100%;
+    --width: 100%;
+  }
+  agm-map {
+    height: 100%;
+  }
+
+  .wr-well {
+    text-align: center;
+    margin: auto;
+    max-width: 800px;
+    padding: 20px 15px 0;
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      color: #000;
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
+    }
+  }
+
+  .wr-float {
+    position: absolute;
+    top: 25px;
+    left: 15%;
+    right: 15%;
+    background-color: transparent;
+  }
+
