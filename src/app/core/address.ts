@@ -13,8 +13,8 @@ export class Address {
         public longitude: string = ' '
     ) {}
 
-    toString(): string {
-        const result = ` $(this.address1) $(this.address2) $(this.city), $(this.state), $(this.zip)`;
-        return result;
-    }
+    // toString(): string {
+    //     const result = ` $(this.address1) $(this.address2) $(this.city), $(this.state), $(this.zip)`;
+    //     return result;
+    // }
 }

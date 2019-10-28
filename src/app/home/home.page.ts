@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { AddressListService } from './../address-list/address-list.service';
+import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Events, Platform } from '@ionic/angular';
+import { Platform } from '@ionic/angular';
 import { Address } from '../core/address';
+import { Subscription } from 'rxjs';
 
 
 
@@ -10,9 +12,10 @@ import { Address } from '../core/address';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss']
 })
-export class HomePage {
+export class HomePage implements OnInit {
   data: any;
   address: Address;
+  subscription: Subscription;
   // tslint:disable-next-line:no-inferrable-types
   located: boolean = false;
   height = 0;
@@ -24,10 +27,18 @@ export class HomePage {
     private platform: Platform,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private events: Events
+    private addressStore: AddressListService
   ) {
-    console.log(' in home page constructor');
     this.height = platform.height() - 56;
+  }
+
+  ngOnInit(): void {
+    this.subscription = this.addressStore.getAddress().subscribe(newAddress => {
+      this.address = newAddress;
+      if (this.address) {
+        this.located = true;
+      }
+    });
   }
 
   gotoSetup() {
@@ -36,15 +47,15 @@ export class HomePage {
 
   gotoAddressList() {
     // tslint:disable-next-line:variable-name
-    this.events.subscribe('address', _param => {
-      // listen to event subscription
-      this.address = _param;
-      if (this.address) {
-        this.located = true;
-      }
-      console.log(this.address);
-      this.events.unsubscribe('address'); // unsubscribe this event
-    });
+    // this.events.subscribe('address', _param => {
+    //   // listen to event subscription
+    //   this.address = _param;
+    //   if (this.address) {
+    //     this.located = true;
+    //   }
+    //   console.log(this.address);
+    //   this.events.unsubscribe('address'); // unsubscribe this event
+    // });
     this.router.navigate(['address-list']);
   }
 

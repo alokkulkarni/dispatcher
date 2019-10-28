@@ -2,7 +2,7 @@ import { Component, OnInit, Output } from '@angular/core';
 import { Router, NavigationExtras } from '@angular/router';
 import { AddressService } from './../core/address.service';
 import { Address } from '../core/address';
-import { Events } from '@ionic/angular';
+import { AddressListService } from './address-list.service';
 
 @Component({
   selector: 'app-address-list',
@@ -17,15 +17,18 @@ export class AddressListPage implements OnInit {
   //   }
   // };
 
-  constructor(private router: Router, private addressService: AddressService, private events: Events) {}
+  constructor(private router: Router,
+              private addressService: AddressService,
+              private addressStore: AddressListService) {}
 
   ngOnInit(): void {
-    this.addressService.fetchAll().then(addresses => console.log(addresses));
+    // this.addressService.fetchAll().then(addresses => console.log(addresses));
     this.addresses = this.addressService.fetchAll();
   }
 
   sendMessage(address: Address) {
-    this.events.publish('address', address);
+    // this.events.publish('address', address);
+    this.addressStore.setAddress(address);
   }
   // tslint:disable-next-line:align
   // tslint:disable-next-line:semicolon
