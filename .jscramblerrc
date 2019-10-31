@@ -1,0 +1,17 @@
+{
+  "keys": {
+    "accessKey": "8D45312B8F8F8F74C2229DD6EF4D25B3D29BE1D8",
+    "secretKey": "295854F4E7F11BA85FFC8D706E1DF551F066679D"
+  },
+  "applicationId": "5db769adae727b0015102e4e",
+  "filesSrc": [
+      "www/main*.js"
+  ],
+  "filesDest": "/",
+  "params": [],
+  "areSubscribersOrdered": false,
+  "bail": true,
+  "useRecommendedOrder": true,
+  "jscramblerVersion": "6.1",
+  "tolerateMinification": true
+}

@@ -12,6 +12,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AddressService } from './core/address.service';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { LoggingInterceptorService } from './logging-interceptor.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,13 +22,20 @@ import { environment } from '../environments/environment';
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production
+    })
   ],
   providers: [
     StatusBar,
     SplashScreen,
     AddressService,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoggingInterceptorService,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })
