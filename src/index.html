@@ -7,7 +7,7 @@
 
   <base href="/"/>
 
-  <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+  <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0, user-scalable=no"/>
   <meta name="format-detection" content="telephone=no"/>
   <meta name="msapplication-tap-highlight" content="no"/>
 
@@ -18,11 +18,17 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
   <link rel="manifest" href="manifest.webmanifest">
   <meta name="theme-color" content="#1976d2">
+
+  
 </head>
 
 <body>
   <app-root></app-root>
   <noscript>Please enable JavaScript to continue using this application.</noscript>
+  <script src="http://localhost:3000/assets/modules/channel-web/inject.js"></script>
+  <script>
+    window.botpressWebChat.init({ host: 'http://localhost:3000', botId: 'test2', extraStylesheet: 'assets/modules/channel-web/custom.css' })
+  </script>
 </body>
 
 </html>
